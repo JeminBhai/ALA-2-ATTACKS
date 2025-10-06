@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malware Simulator - Jemin Kava</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-bg" id="loadingBg"></div>
+        <div class="scanner"></div>
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+        
+        <div class="loading-logo">
+            <div class="loading-logo-icon">🛡️</div>
+        </div>
+        
+        <div class="loading-text">JEMIN KAVA</div>
+        <div class="loading-subtitle">CODER</div>
+        
+        <div class="loading-progress">
+            <div class="loading-progress-bar"></div>
+        </div>
+        
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+        <div class="loading-status" id="loadingStatus">Initializing security protocols...</div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="grain"></div>
+        <canvas class="matrix-bg" id="matrixCanvas"></canvas>
+
+        <header id="header">
+            <div class="header-content">
+                <div class="logo" onclick="location.reload()">
+                    <div class="logo-icon">🛡️</div>
+                    <div class="logo-text">
+                        <div class="name">JEMIN KAVA</div>
+                        <div class="tagline">CODER</div>
+                    </div>
+                </div>
+                <nav class="nav-menu">
+                    <a href="#" class="nav-link active" onclick="showSection('landing'); return false;">Home</a>
+                    <a href="#" class="nav-link" onclick="showSection('dashboard'); return false;">Simulations</a>
+                    <a href="#" class="nav-link" onclick="showSection('about'); return false;">About</a>
+                    <a href="#" class="nav-link" onclick="scrollToFooter(); return false;">Contact</a>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <section class="landing" id="landing">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    SAFE & EDUCATIONAL ENVIRONMENT
+                </div>
+                <h1>
+                    <span class="gradient-text">Explore the Hidden World</span><br>
+                    of Malware
+                </h1>
+                <p>
+                    Experience cutting-edge malware visualization in a secure sandbox environment. 
+                    Understand how viruses, worms, and trojans operate through interactive simulations.
+                </p>
+                <div class="cta-group">
+                    <button class="cyber-btn primary" onclick="showSection('dashboard')">
+                        Launch Simulator
+                    </button>
+                    <button class="cyber-btn secondary" onclick="showSection('about')">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="3">0</span>
+                        <div class="stat-label">Malware Types</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="100">0</span>
+                        <div class="stat-label">% Safe Learning</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="20">0</span>
+                        <div class="stat-label">Network Nodes</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1000">0</span>
+                        <div class="stat-label">+ Simulations Run</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard" id="dashboard">
+                <div class="section-header">
+                    <h2>Choose Your Malware Type</h2>
+                    <p>Select a simulation to visualize how different types of malware behave and spread through networks in real-time</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="malware-card virus" onclick="startSimulation('virus')">
+                        <span class="card-icon">🦠</span>
+                        <h3>VIRUS</h3>
+                        <p>Self-replicating code that attaches to files and spreads through execution. Requires host file interaction to propagate across systems.</p>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <div class="stat-label">Spread Rate</div>
+                                <div class="stat-value">Medium</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Detection</div>
+                                <div class="stat-value">Hard</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="cyber-btn primary" style="width: 100%; border-color: currentColor; color: currentColor;">
+                            Launch Simulation
+                        </button>
+                    </div>
+
+                    <div class="malware-card worm" onclick="startSimulation('worm')">
+                        <span class="card-icon">🐛</span>
+                        <h3>WORM</h3>
+                        <p>Autonomous malware that spreads across networks without user interaction. Exploits vulnerabilities to propagate rapidly through connected systems.</p>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <div class="stat-label">Spread Rate</div>
+                                <div class="stat-value">Fast</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Detection</div>
+                                <div class="stat-value">Medium</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="cyber-btn primary" style="width: 100%; border-color: currentColor; color: currentColor;">
+                            Launch Simulation
+                        </button>
+                    </div>
+
+                    <div class="malware-card trojan" onclick="startSimulation('trojan')">
+                        <span class="card-icon">🎭</span>
+                        <h3>TROJAN</h3>
+                        <p>Disguised malicious software that appears legitimate. Infiltrates systems by masquerading as trusted applications to bypass security.</p>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <div class="stat-label">Spread Rate</div>
+                                <div class="stat-value">Slow</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Detection</div>
+                                <div class="stat-value">Very Hard</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="cyber-btn primary" style="width: 100%; border-color: currentColor; color: currentColor;">
+                            Launch Simulation
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section" id="about">
+                <div class="section-header">
+                    <h2>About This Project</h2>
+                    <p>An innovative educational platform for understanding cybersecurity threats</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>Understanding Cyber Threats</h2>
+                        <p>
+                            This <span class="highlight">Malware Simulator</span> is an advanced educational tool designed to help students, professionals, and cybersecurity enthusiasts understand how different types of malicious software operate in a completely safe environment.
+                        </p>
+                        <p>
+                            Built by <span class="highlight">Jemin Kava</span>, this platform uses cutting-edge visualization techniques to demonstrate the behavior patterns of viruses, worms, and trojans without any actual risk to your system.
+                        </p>
+                        <p>
+                            Each simulation provides real-time insights into infection vectors, propagation methods, and network vulnerability exploitation, making complex cybersecurity concepts accessible and engaging.
+                        </p>
+                    </div>
+
+                    <div class="about-visual">
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">🎯</div>
+                                <div class="feature-text">
+                                    <h4>Interactive Learning</h4>
+                                    <p>Real-time visualization of malware behavior</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🔒</div>
+                                <div class="feature-text">
+                                    <h4>100% Safe</h4>
+                                    <p>No actual malware executed on your system</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📊</div>
+                                <div class="feature-text">
+                                    <h4>Network Analysis</h4>
+                                    <p>Understand infection patterns and spread rates</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🎓</div>
+                                <div class="feature-text">
+                                    <h4>Educational Purpose</h4>
+                                    <p>Perfect for students and professionals alike</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 100px;">
+                    <h2>Technology Stack</h2>
+                    <p>Built with modern web technologies for optimal performance</p>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-card">
+                        <span class="tech-icon">🎨</span>
+                        <h3>HTML5 & CSS3</h3>
+                        <p>Modern markup and styling with advanced animations</p>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-icon">⚡</span>
+                        <h3>JavaScript ES6+</h3>
+                        <p>Dynamic simulations and interactive network visualization</p>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-icon">🐍</span>
+                        <h3>Python Logic</h3>
+                        <p>Backend simulation algorithms and behavior modeling</p>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-icon">🎭</span>
+                        <h3>Canvas API</h3>
+                        <p>High-performance graphics and animation rendering</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="simulation-view" id="simulationView">
+                <div class="sim-header">
+                    <div class="sim-title-group">
+                        <h2 id="simTitle">Malware Simulation</h2>
+                        <p class="subtitle">Real-time network infection visualization</p>
+                    </div>
+                    <div class="sim-controls">
+                        <button class="sim-btn" onclick="toggleSimulation(event)">▶ Play</button>
+                        <button class="sim-btn" onclick="resetSimulation()">↻ Reset</button>
+                        <button class="sim-btn" onclick="backToDashboard()">← Back</button>
+                    </div>
+                </div>
+
+                <div class="sim-content">
+                    <div class="sim-canvas" id="simCanvas"></div>
+                    
+                    <div class="sim-sidebar">
+                        <div class="info-card">
+                            <h3>Description</h3>
+                            <p id="simDescription">Select a malware type to begin simulation.</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Behavior Pattern</h3>
+                            <p id="simBehavior">Observe how the malware spreads through the network.</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Status Log</h3>
+                            <div class="status-log" id="statusLog">
+                                <div>System ready...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-logo">JEMIN KAVA</div>
+                    <p class="footer-disclaimer">
+                        ⚠️ All simulations are safe and educational. No actual malware is executed.
+                    </p>
+                    <p class="footer-text">
+                        Created for cybersecurity education and awareness | Professional malware behavior visualization
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">💼</a>
+                        <a href="#" class="social-link">🐙</a>
+                        <a href="#" class="social-link">🐦</a>
+                    </div>
+                    <p class="footer-text" style="margin-top: 30px;">
+                        © 2025 Jemin Kava. All rights reserved.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
